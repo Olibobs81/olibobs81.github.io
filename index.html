@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,144 +7,108 @@
     <title>Chaos Club</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap');
+
         * {
             box-sizing: border-box;
         }
 
+        html,
         body {
             margin: 0;
-            background: #111;
-            color: #eee;
-            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            min-height: 100%;
         }
 
-        a {
-            color: #aaa;
-            text-decoration: none;
+        body {
+            background: #0b0b0b;
+            color: #ffffff;
+            font-family: "Space Grotesk", sans-serif;
         }
 
-        a:hover {
-            color: white;
-        }
-
-        header {
-            border-bottom: 1px solid #222;
-        }
-
-        .header {
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
+        .page {
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            padding: 40px 25px;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
         }
 
         .logo {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-        }
-
-        nav {
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 35px;
             display: flex;
-            gap: 20px;
-            font-size: 14px;
-        }
-
-        main {
-            max-width: 1000px;
-            margin: auto;
-            padding: 80px 20px;
-        }
-
-        .intro {
-            max-width: 650px;
-        }
-
-        h1 {
-            font-size: 56px;
-            margin: 0 0 20px;
-            letter-spacing: -2px;
-        }
-
-        .intro p {
-            color: #999;
-            font-size: 17px;
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        .buttons {
-            margin-top: 30px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .buttons a {
-            border-bottom: 1px solid #555;
-            padding-bottom: 3px;
-            font-size: 14px;
-        }
-
-        .screenshot {
-            margin-top: 80px;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #191919;
-            border: 1px solid #242424;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            background: #171717;
+            border: 1px solid #252525;
             overflow: hidden;
         }
 
-        .screenshot img {
+        .logo img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            display: block;
+            object-fit: contain;
         }
 
-        .about {
-            margin-top: 80px;
-            padding-top: 50px;
-            border-top: 1px solid #222;
-            max-width: 650px;
+        .logo-text {
+            font-size: 14px;
+            color: #555;
         }
 
-        .about h2 {
-            font-size: 24px;
-            margin: 0 0 15px;
-        }
-
-        .about p {
-            color: #999;
-            line-height: 1.7;
+        h1 {
             margin: 0;
+            font-size: clamp(48px, 9vw, 82px);
+            font-weight: 600;
+            letter-spacing: -0.06em;
+        }
+
+        .links {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .links a {
+            color: #888;
+            font-size: 15px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .links a:hover {
+            color: #fff;
         }
 
         footer {
-            max-width: 1000px;
-            margin: auto;
-            padding: 30px 20px;
-            border-top: 1px solid #222;
-            color: #555;
+            position: fixed;
+            bottom: 22px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #444;
             font-size: 12px;
         }
 
         @media (max-width: 600px) {
-            main {
-                padding-top: 60px;
+            .logo {
+                width: 130px;
+                height: 130px;
+                margin-bottom: 28px;
             }
 
-            h1 {
-                font-size: 44px;
-            }
-
-            nav {
-                gap: 12px;
-            }
-
-            .screenshot {
-                margin-top: 60px;
+            .links {
+                gap: 20px;
             }
         }
     </style>
@@ -153,56 +116,35 @@
 
 <body>
 
-<header>
-    <div class="header">
-        <a href="/" class="logo">Chaos Club</a>
+    <div class="page">
 
-        <nav>
-            <a href="/">Home</a>
-            <a href="/chaosclub-privacy/">Privacy</a>
-        </nav>
-    </div>
-</header>
+        <div class="content">
 
-<main>
+            <div class="logo">
+                <!--
+                    If you have a Chaos Club logo, put it in the repository
+                    and change this to:
 
-    <div class="intro">
-        <h1>Chaos Club</h1>
+                    <img src="logo.png" alt="Chaos Club">
+                -->
 
-        <p>
-            A multiplayer game currently in development for PC and Quest.
-        </p>
+                <span class="logo-text">logo</span>
+            </div>
 
-        <div class="buttons">
-            <a href="#">Discord</a>
-            <a href="/chaosclub-privacy/">Privacy Policy</a>
+            <h1>Chaos Club</h1>
+
+            <div class="links">
+                <a href="#">Discord</a>
+                <a href="/chaosclub-privacy/">Privacy Policy</a>
+            </div>
+
         </div>
+
     </div>
 
-    <div class="screenshot">
-        <!--
-            Put a screenshot in your repository and replace this
-            div with:
-
-            <img src="screenshot.jpg" alt="Chaos Club">
-        -->
-    </div>
-
-    <div class="about">
-        <h2>About</h2>
-
-        <p>
-            Chaos Club is being developed using Unreal Engine 5.
-            The game is focused on multiplayer gameplay and player interaction.
-        </p>
-    </div>
-
-</main>
-
-<footer>
-    © 2026 Chaos Club
-</footer>
+    <footer>
+        © 2026 Chaos Club
+    </footer>
 
 </body>
 </html>
-```
