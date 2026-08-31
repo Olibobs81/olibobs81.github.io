@@ -1,25 +1,726 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Chaos Club</title>
+
+    <meta
+        name="description"
+        content="Chaos Club. A multiplayer game currently in development."
+    >
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --background: #0a0a0a;
+            --text: #f2f2f2;
+            --muted: #8a8a8a;
+            --line: #242424;
+            --surface: #111111;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            font-family: "Inter", Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ---------------- NAVIGATION ---------------- */
+
+        header {
+            width: 100%;
+            border-bottom: 1px solid var(--line);
+        }
+
+        nav {
+            width: min(1400px, 90%);
+            height: 76px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .nav-links a {
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* ---------------- HERO ---------------- */
+
+        .hero {
+            width: min(1400px, 90%);
+            min-height: calc(100vh - 76px);
+            margin: auto;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            padding: 80px 0 50px;
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .status {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .status::before {
+            content: "";
+            display: inline-block;
+
+            width: 6px;
+            height: 6px;
+
+            margin-right: 9px;
+
+            border-radius: 50%;
+            background: #8f8f8f;
+
+            vertical-align: 1px;
+        }
+
+        .hero-title {
+            max-width: 1100px;
+            margin-top: auto;
+        }
+
+        .hero-title h1 {
+            font-size: clamp(80px, 15vw, 220px);
+            line-height: 0.78;
+            letter-spacing: -0.075em;
+            font-weight: 800;
+        }
+
+        .hero-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            margin-top: 80px;
+        }
+
+        .hero-description {
+            max-width: 420px;
+
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .scroll {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* ---------------- VISUAL ---------------- */
+
+        .visual {
+            width: min(1400px, 90%);
+            height: 600px;
+            margin: 0 auto;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #151515 0%,
+                    #0d0d0d 45%,
+                    #181818 100%
+                );
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        /*
+            Temporary visual treatment.
+
+            Replace this section with actual Chaos Club
+            artwork/game screenshots later.
+        */
+
+        .visual::before {
+            content: "CC";
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            font-size: min(30vw, 360px);
+            font-weight: 800;
+            letter-spacing: -0.1em;
+
+            color: #202020;
+        }
+
+        .visual-label {
+            position: absolute;
+
+            left: 25px;
+            bottom: 22px;
+
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* ---------------- ABOUT ---------------- */
+
+        .section {
+            width: min(1400px, 90%);
+            margin: auto;
+
+            padding: 150px 0;
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 25% 1fr;
+            gap: 40px;
+        }
+
+        .section-number {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .section-content {
+            max-width: 760px;
+        }
+
+        .section-content h2 {
+            font-size: clamp(40px, 6vw, 80px);
+            line-height: 1;
+            letter-spacing: -0.055em;
+            font-weight: 700;
+
+            margin-bottom: 40px;
+        }
+
+        .section-content p {
+            max-width: 650px;
+
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* ---------------- DEVELOPMENT ---------------- */
+
+        .development {
+            width: min(1400px, 90%);
+            margin: auto;
+
+            padding: 150px 0;
+        }
+
+        .development-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .development-item {
+            padding: 35px 0;
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .development-item:nth-child(odd) {
+            padding-right: 50px;
+            border-right: 1px solid var(--line);
+        }
+
+        .development-item:nth-child(even) {
+            padding-left: 50px;
+        }
+
+        .development-item:nth-last-child(-n + 2) {
+            border-bottom: none;
+        }
+
+        .development-label {
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            color: #666;
+
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+
+            margin-bottom: 12px;
+        }
+
+        .development-item h3 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .development-item p {
+            color: var(--muted);
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        /* ---------------- LINKS ---------------- */
+
+        .links {
+            width: min(1400px, 90%);
+            margin: auto;
+
+            padding: 100px 0 150px;
+        }
+
+        .links-title {
+            font-size: 12px;
+            font-family: "DM Mono", monospace;
+
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+
+            margin-bottom: 30px;
+        }
+
+        .link-row {
+            border-top: 1px solid var(--line);
+        }
+
+        .link {
+            min-height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid var(--line);
+
+            font-size: 22px;
+            font-weight: 500;
+
+            transition:
+                padding 0.25s ease,
+                color 0.25s ease;
+        }
+
+        .link span:last-child {
+            color: #555;
+            font-family: "DM Mono", monospace;
+            font-size: 13px;
+        }
+
+        .link:hover {
+            padding-left: 15px;
+            color: #aaa;
+        }
+
+        .link:hover span:last-child {
+            color: var(--text);
+        }
+
+        /* ---------------- FOOTER ---------------- */
+
+        footer {
+            width: min(1400px, 90%);
+            margin: auto;
+
+            padding: 30px 0 40px;
+
+            display: flex;
+            justify-content: space-between;
+
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        /* ---------------- MOBILE ---------------- */
+
+        @media (max-width: 700px) {
+
+            nav {
+                height: 65px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero {
+                min-height: 80vh;
+                padding-top: 50px;
+            }
+
+            .hero-top {
+                display: block;
+            }
+
+            .hero-title {
+                margin-top: 150px;
+            }
+
+            .hero-title h1 {
+                font-size: clamp(65px, 20vw, 130px);
+            }
+
+            .hero-bottom {
+                display: block;
+                margin-top: 60px;
+            }
+
+            .scroll {
+                display: none;
+            }
+
+            .visual {
+                height: 350px;
+            }
+
+            .section,
+            .development {
+                padding: 100px 0;
+            }
+
+            .section-header {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .development-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .development-item:nth-child(odd) {
+                padding-right: 0;
+                border-right: none;
+            }
+
+            .development-item:nth-child(even) {
+                padding-left: 0;
+            }
+
+            .development-item:nth-last-child(-n + 2) {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .development-item:last-child {
+                border-bottom: none;
+            }
+
+            .links {
+                padding: 80px 0 100px;
+            }
+
+            footer {
+                display: block;
+            }
+
+            footer div:last-child {
+                margin-top: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Chaos Club</h1>
+    <!-- NAVIGATION -->
 
-    <p>Welcome to the official Chaos Club website.</p>
+    <header>
+        <nav>
 
-    <h2>Important Links</h2>
-
-    <ul>
-        <li>
-            <a href="/chaosclub-privacy/">
-                Privacy Policy
+            <a href="/" class="logo">
+                CHAOS CLUB
             </a>
-        </li>
-    </ul>
+
+            <div class="nav-links">
+                <a href="#about">ABOUT</a>
+                <a href="#development">DEVELOPMENT</a>
+                <a href="/chaosclub-privacy/">PRIVACY</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-top">
+
+                <div class="status">
+                    IN DEVELOPMENT
+                </div>
+
+                <div class="status">
+                    2026
+                </div>
+
+            </div>
+
+            <div class="hero-title">
+                <h1>
+                    CHAOS<br>
+                    CLUB
+                </h1>
+            </div>
+
+            <div class="hero-bottom">
+
+                <p class="hero-description">
+                    A multiplayer game built around the simple idea
+                    that playing games with other people should be
+                    ridiculously fun.
+                </p>
+
+                <div class="scroll">
+                    Scroll to explore ↓
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN VISUAL -->
+
+        <div class="visual">
+
+            <div class="visual-label">
+                CHAOS CLUB / PROJECT 001
+            </div>
+
+        </div>
+
+
+        <!-- ABOUT -->
+
+        <section class="section" id="about">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    01 / ABOUT
+                </div>
+
+                <div class="section-content">
+
+                    <h2>
+                        Multiplayer first.
+                    </h2>
+
+                    <p>
+                        Chaos Club is a multiplayer game currently
+                        being developed with a focus on social gameplay,
+                        competitive experiences and the kind of moments
+                        that are much funnier when someone else is there
+                        to witness them.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DEVELOPMENT -->
+
+        <section class="development" id="development">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    02 / DEVELOPMENT
+                </div>
+
+                <div class="section-content">
+
+                    <h2>
+                        Currently building.
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="development-grid">
+
+                <div class="development-item">
+
+                    <div class="development-label">
+                        Status
+                    </div>
+
+                    <h3>
+                        In development
+                    </h3>
+
+                    <p>
+                        Chaos Club is actively being built.
+                    </p>
+
+                </div>
+
+                <div class="development-item">
+
+                    <div class="development-label">
+                        Platform
+                    </div>
+
+                    <h3>
+                        PC
+                    </h3>
+
+                    <p>
+                        Initial development is focused on PC.
+                    </p>
+
+                </div>
+
+                <div class="development-item">
+
+                    <div class="development-label">
+                        Online
+                    </div>
+
+                    <h3>
+                        Multiplayer
+                    </h3>
+
+                    <p>
+                        Online functionality is a core part of the project.
+                    </p>
+
+                </div>
+
+                <div class="development-item">
+
+                    <div class="development-label">
+                        Engine
+                    </div>
+
+                    <h3>
+                        Unreal Engine
+                    </h3>
+
+                    <p>
+                        Built using Unreal Engine.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LINKS -->
+
+        <section class="links">
+
+            <div class="links-title">
+                03 / INFORMATION
+            </div>
+
+            <div class="link-row">
+
+                <a
+                    class="link"
+                    href="/chaosclub-privacy/"
+                >
+                    <span>Privacy Policy</span>
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div>
+            CHAOS CLUB
+        </div>
+
+        <div>
+            © 2026
+        </div>
+
+    </footer>
 
 </body>
 </html>
+```
