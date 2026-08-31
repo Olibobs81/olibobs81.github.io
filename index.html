@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,252 +6,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Chaos Club</title>
-    <meta name="description" content="Chaos Club - multiplayer game currently in development.">
 
     <style>
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
-            background: #0d0d0d;
-            color: #e5e5e5;
+            margin: 0;
+            background: #111;
+            color: #eee;
             font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
         }
 
         a {
-            color: inherit;
+            color: #aaa;
             text-decoration: none;
         }
 
-        header {
-            border-bottom: 1px solid #242424;
+        a:hover {
+            color: white;
         }
 
-        nav {
-            max-width: 1100px;
+        header {
+            border-bottom: 1px solid #222;
+        }
+
+        .header {
+            max-width: 1000px;
             margin: auto;
-            padding: 22px 30px;
+            padding: 20px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
+            color: white;
         }
 
-        .nav-links {
+        nav {
             display: flex;
-            gap: 25px;
-            list-style: none;
+            gap: 20px;
             font-size: 14px;
-            color: #888;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
         }
 
         main {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: auto;
-            padding: 0 30px;
+            padding: 80px 20px;
         }
 
-        section {
-            padding: 100px 0;
-            border-bottom: 1px solid #242424;
-        }
-
-        .hero {
-            padding: 150px 0 140px;
-        }
-
-        .small {
-            color: #666;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 20px;
+        .intro {
+            max-width: 650px;
         }
 
         h1 {
-            font-size: clamp(50px, 8vw, 88px);
-            line-height: 0.95;
-            letter-spacing: -0.05em;
-            max-width: 800px;
-            margin-bottom: 30px;
+            font-size: 56px;
+            margin: 0 0 20px;
+            letter-spacing: -2px;
         }
 
-        h2 {
-            font-size: 32px;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 20px;
-        }
-
-        p {
+        .intro p {
             color: #999;
-            max-width: 620px;
-            font-size: 16px;
-        }
-
-        .hero p {
             font-size: 17px;
+            line-height: 1.7;
+            margin: 0;
         }
 
-        .links {
+        .buttons {
+            margin-top: 30px;
             display: flex;
-            gap: 25px;
-            margin-top: 35px;
+            gap: 20px;
         }
 
-        .links a {
-            font-size: 14px;
-            color: #bbb;
-            border-bottom: 1px solid #444;
+        .buttons a {
+            border-bottom: 1px solid #555;
             padding-bottom: 3px;
-        }
-
-        .links a:hover {
-            color: #fff;
-            border-color: #fff;
-        }
-
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-        }
-
-        .info {
-            margin-top: 35px;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            padding: 17px 0;
-            border-top: 1px solid #292929;
             font-size: 14px;
         }
 
-        .info-row:last-child {
-            border-bottom: 1px solid #292929;
-        }
-
-        .info-row span:last-child {
-            color: #777;
-            text-align: right;
-        }
-
-        .image {
-            margin-top: 65px;
+        .screenshot {
+            margin-top: 80px;
             width: 100%;
-            aspect-ratio: 16 / 8;
-            background: #171717;
-            border: 1px solid #292929;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            font-size: 13px;
+            aspect-ratio: 16 / 9;
+            background: #191919;
+            border: 1px solid #242424;
             overflow: hidden;
         }
 
-        .image img {
+        .screenshot img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
-        .development-list {
-            margin-top: 45px;
+        .about {
+            margin-top: 80px;
+            padding-top: 50px;
+            border-top: 1px solid #222;
+            max-width: 650px;
         }
 
-        .development-item {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 40px;
-            padding: 25px 0;
-            border-top: 1px solid #292929;
+        .about h2 {
+            font-size: 24px;
+            margin: 0 0 15px;
         }
 
-        .development-item:last-child {
-            border-bottom: 1px solid #292929;
-        }
-
-        .development-item strong {
-            font-size: 14px;
-            font-weight: normal;
-            color: #ddd;
-        }
-
-        .development-item span {
-            color: #777;
-            font-size: 14px;
+        .about p {
+            color: #999;
+            line-height: 1.7;
+            margin: 0;
         }
 
         footer {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: auto;
-            padding: 30px;
-            display: flex;
-            justify-content: space-between;
+            padding: 30px 20px;
+            border-top: 1px solid #222;
             color: #555;
             font-size: 12px;
         }
 
-        @media (max-width: 700px) {
-
+        @media (max-width: 600px) {
             main {
-                padding: 0 20px;
-            }
-
-            nav {
-                padding: 20px;
-            }
-
-            .nav-links {
-                gap: 15px;
-            }
-
-            section {
-                padding: 75px 0;
-            }
-
-            .hero {
-                padding: 110px 0;
+                padding-top: 60px;
             }
 
             h1 {
-                font-size: 55px;
+                font-size: 44px;
             }
 
-            .two-column {
-                grid-template-columns: 1fr;
-                gap: 50px;
+            nav {
+                gap: 12px;
             }
 
-            .development-item {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-            footer {
-                padding: 25px 20px;
-                flex-direction: column;
-                gap: 8px;
+            .screenshot {
+                margin-top: 60px;
             }
         }
     </style>
@@ -259,156 +154,55 @@
 <body>
 
 <header>
-    <nav>
-        <a href="#" class="logo">Chaos Club</a>
+    <div class="header">
+        <a href="/" class="logo">Chaos Club</a>
 
-        <ul class="nav-links">
-            <li><a href="#game">Game</a></li>
-            <li><a href="#development">Development</a></li>
-            <li><a href="#links">Links</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/chaosclub-privacy/">Privacy</a>
+        </nav>
+    </div>
 </header>
 
 <main>
 
-    <section class="hero">
-        <div class="small">Chaos Club</div>
-
-        <h1>Multiplayer game.<br>In development.</h1>
+    <div class="intro">
+        <h1>Chaos Club</h1>
 
         <p>
-            Chaos Club is a multiplayer game currently being developed for PC and Quest.
+            A multiplayer game currently in development for PC and Quest.
         </p>
 
-        <div class="links">
-            <a href="#game">Game</a>
-            <a href="#links">Discord</a>
-        </div>
-    </section>
-
-
-    <section id="game">
-
-        <div class="two-column">
-
-            <div>
-                <div class="small">Game</div>
-
-                <h2>Chaos Club</h2>
-
-                <p>
-                    A multiplayer game with player-created worlds, social features,
-                    and physics-based movement.
-                </p>
-
-                <p style="margin-top: 18px;">
-                    The game is still in development. Features and systems are
-                    subject to change.
-                </p>
-            </div>
-
-            <div>
-
-                <div class="small">Details</div>
-
-                <div class="info">
-
-                    <div class="info-row">
-                        <span>Status</span>
-                        <span>In development</span>
-                    </div>
-
-                    <div class="info-row">
-                        <span>Platforms</span>
-                        <span>PC / Quest</span>
-                    </div>
-
-                    <div class="info-row">
-                        <span>Multiplayer</span>
-                        <span>Online</span>
-                    </div>
-
-                    <div class="info-row">
-                        <span>Engine</span>
-                        <span>Unreal Engine 5</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="image">
-            <!-- Replace with a real screenshot -->
-            Gameplay screenshot
-        </div>
-
-    </section>
-
-
-    <section id="development">
-
-        <div class="small">Development</div>
-
-        <h2>Current work</h2>
-
-        <p>
-            Development is ongoing. The project is being built from the ground up,
-            including its multiplayer and online systems.
-        </p>
-
-        <div class="development-list">
-
-            <div class="development-item">
-                <strong>Multiplayer</strong>
-                <span>Networking and online services</span>
-            </div>
-
-            <div class="development-item">
-                <strong>Movement</strong>
-                <span>Player movement and interaction</span>
-            </div>
-
-            <div class="development-item">
-                <strong>Worlds</strong>
-                <span>Game environments and maps</span>
-            </div>
-
-            <div class="development-item">
-                <strong>Accounts</strong>
-                <span>Online identity and player accounts</span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section id="links">
-
-        <div class="small">Links</div>
-
-        <h2>Chaos Club</h2>
-
-        <p>
-            Official links for the project.
-        </p>
-
-        <div class="links">
-            <a href="#" target="_blank" rel="noopener">Discord</a>
+        <div class="buttons">
+            <a href="#">Discord</a>
             <a href="/chaosclub-privacy/">Privacy Policy</a>
         </div>
+    </div>
 
-    </section>
+    <div class="screenshot">
+        <!--
+            Put a screenshot in your repository and replace this
+            div with:
+
+            <img src="screenshot.jpg" alt="Chaos Club">
+        -->
+    </div>
+
+    <div class="about">
+        <h2>About</h2>
+
+        <p>
+            Chaos Club is being developed using Unreal Engine 5.
+            The game is focused on multiplayer gameplay and player interaction.
+        </p>
+    </div>
 
 </main>
 
 <footer>
-    <span>© 2026 Chaos Club</span>
-    <span>All rights reserved.</span>
+    © 2026 Chaos Club
 </footer>
 
 </body>
 </html>
+```
